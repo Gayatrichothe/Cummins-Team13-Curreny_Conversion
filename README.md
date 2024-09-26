@@ -5,6 +5,7 @@
 The Currency Exchange Rate Analysis Dashboard allows users to analyze and visualize exchange rates between two currencies over a specified duration. This project uses historical exchange rate data and provides an interactive menu for users to select currencies, choose durations for analysis, and view trends through graphical representations.
 
 #Features
+
 -Dynamic Currency Selection: Users can select any two currencies from the available options.
 
 -Flexible Time Durations: View data in weekly, monthly, quarterly, or yearly formats.
