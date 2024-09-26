@@ -51,8 +51,10 @@ The Currency Exchange Rate Analysis Dashboard allows users to analyze and visual
     *Choose the duration for the graph
     
     *Display the graph
+    
+#To view exchange_rate.db 
 
-
+Download https://sqlitebrowser.org/
 
 
 
