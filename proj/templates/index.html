@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/styles.css"> <!-- Link to your CSS file -->
+    <title>Currency Exchange Rate Dashboard</title>
+    <style>
+        /* Inline CSS for layout adjustment */
+        #currency-selection {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        #year-value-selection {
+            margin-top: 20px;
+        }
+
+        #exchange-rate-output {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        #year-select {
+            max-width: 150px;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            padding: 10px 15px;
+            font-size: 1rem;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #004494;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px 0;
+            background-color: #0056b3;
+            color: white;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        h2 {
+            color: black;
+        }
+
+        .output-container {
+            padding: 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Currency Exchange Rate Dashboard</h1>
+    </header>
+    
+    <main>
+        <section id="currency-selection">
+            <h2>Select Currencies</h2>
+            <div>
+                <label for="currency1">Currency 1:</label>
+                <select id="currency1" name="currency1">
+                    <option value="">Search and select Currency 1</option>
+                    <option value="INR">INR - Indian Rupee</option>
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="JPY">JPY - Japanese Yen</option>
+                </select>
+            </div>
+            <div>
+                <label for="currency2">Currency 2:</label>
+                <select id="currency2" name="currency2">
+                    <option value="">Search and select Currency 2</option>
+                    <option value="INR">INR - Indian Rupee</option>
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="JPY">JPY - Japanese Yen</option>
+                </select>
+            </div>
+        </section>
+
+        <section id="year-value-selection">
+            <h2>Yearly Exchange Rate</h2>
+            <div>
+                <label for="year-select">Select Year:</label>
+                <select id="year-select" name="year-select">
+                    <option value="">Select Year</option>
+                    <option value="2012">2012</option>
+                    <option value="2013">2013</option>
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- New containers for currency conversion results -->
+        <section id="conversion-results">
+            <h2>Conversion Result</h2>
+            <div class="output-container" id="conversion-result">
+                <h3>Exchange Rate</h3>
+                <p>1 <span id="currency1-label">--</span> = <span id="exchange-rate">--</span> <span id="currency2-label">--</span></p>
+            </div>
+            <div class="output-container" id="converted-amount">
+                <h3>Converted Amount</h3>
+                <p><span id="currency1-amount">0</span> <span id="currency1-label">--</span> is equivalent to <span id="result-amount">--</span> <span id="currency2-label">--</span></p>
+            </div>
+        </section>
+
+        <section id="duration-selection">
+            <h2>Select Duration</h2>
+            <label for="duration">Choose the time duration:</label>
+            <select id="duration" name="duration">
+                <option value="">Select Duration</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+                <option value="quarterly">Quarterly</option>
+                <option value="yearly">Yearly</option>
+            </select>
+        </section>
+
+        <section id="chart-display">
+            <h2>Exchange Rate Chart</h2>
+            <div id="chart-placeholder">
+                <p>Chart will be displayed here based on selected options.</p>
+            </div>
+        </section>
+
+        <section id="navigate-basket">
+            <div class="button-container">
+                <button onclick="window.location.href='basket.html'">Go to Custom Currency Basket</button>
+                <button onclick="window.location.href='FxRatesViewer.html'">View FX Rates</button>
+                <button onclick="window.location.href='ViewAllCurrencies.html'">View All Currencies</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Currency Exchange Rate Dashboard</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/custom-basket.css"> 
+    <title>Custom Currency Basket</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("calculate-basket").addEventListener("click", function() {
+                const currencies = [
+                    document.getElementById("basket-currency1").value,
+                    document.getElementById("basket-currency2").value,
+                    document.getElementById("basket-currency3").value
+                ];
+
+                const weights = [
+                    parseFloat(document.getElementById("currency1-weight").value) || 0,
+                    parseFloat(document.getElementById("currency2-weight").value) || 0,
+                    parseFloat(document.getElementById("currency3-weight").value) || 0
+                ];
+
+                // Make sure to validate weights here as well
+
+                fetch("/calculate_basket", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        currencies: currencies,
+                        weights: weights,
+                        year: /* the year you want to use, e.g., 2022 */
+                        document.getElementById("year-selection").value
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                    } else {
+                        document.getElementById("basket-value-output").innerHTML = 
+                            `<p>Calculated Basket Value: ${data.basket_value.toFixed(2)}</p>`;
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Custom Currency Basket</h1>
+    </header>
+    
+    <main>
+        <section id="currency-basket">
+            <h2>Create Your Custom Currency Basket</h2>
+            <div>
+                <label for="basket-currency1">Select Currency 1:</label>
+                <select id="basket-currency1" name="basket-currency1">
+                    <option value="">Select Currency</option>
+                    <option value="INR">INR - Indian Rupee</option>
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="JPY">JPY - Japanese Yen</option>
+                </select>
+                <input type="number" id="currency1-weight" placeholder="Weight (%)" min="0" max="100">
+            </div>
+            <div>
+                <label for="basket-currency2">Select Currency 2:</label>
+                <select id="basket-currency2" name="basket-currency2">
+                    <option value="">Select Currency</option>
+                    <option value="INR">INR - Indian Rupee</option>
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="JPY">JPY - Japanese Yen</option>
+                </select>
+                <input type="number" id="currency2-weight" placeholder="Weight (%)" min="0" max="100">
+            </div>
+            <div>
+                <label for="basket-currency3">Select Currency 3:</label>
+                <select id="basket-currency3" name="basket-currency3">
+                    <option value="">Select Currency</option>
+                    <option value="INR">INR - Indian Rupee</option>
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="JPY">JPY - Japanese Yen</option>
+                </select>
+                <input type="number" id="currency3-weight" placeholder="Weight (%)" min="0" max="100">
+            </div>
+            <div>
+                <label for="year-selection">Select Year:</label>
+                <select id="year-selection" name="year-selection">
+                    <option value="2012">2012</option>
+                    <option value="2013">2013</option>
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                </select>
+            </div>
+            <button id="calculate-basket">Calculate Basket Value</button>
+            <div id="basket-value-output">
+                <p>The calculated value of the basket will be displayed here.</p>
+            </div>
+        </section>
+
+        <section id="navigate-dashboard">
+            <button onclick="window.location.href='index.html'">Back to Dashboard</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Currency Exchange Rate Dashboard</p>
+    </footer>
+</body>
+</html>

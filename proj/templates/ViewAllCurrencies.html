@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Rates</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .search-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px; /* Add some margin for spacing */
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Currency Rates</h1>
+    
+    <div class="search-container">
+        <input type="text" id="currencySearch" onkeyup="filterTable()" placeholder="Search for currencies...">
+        <button onclick="refreshRates()">Refresh</button>
+    </div>
+
+    <table id="currencyTable">
+        <thead>
+            <tr>
+                <th>Short Code</th>
+                <th>Description</th>
+                <th>Current Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>USD</td><td>US Dollar</td><td>1.00</td></tr>
+            <tr><td>EUR</td><td>Euro</td><td>0.85</td></tr>
+            <tr><td>INR</td><td>Indian Rupee</td><td>74.50</td></tr>
+            <tr><td>AUD</td><td>Australian Dollar</td><td>1.35</td></tr>
+            <tr><td>GBP</td><td>British Pound</td><td>0.73</td></tr>
+            <tr><td>JPY</td><td>Japanese Yen</td><td>109.65</td></tr>
+            <tr><td>CNY</td><td>Chinese Yuan</td><td>6.48</td></tr>
+            <tr><td>CAD</td><td>Canadian Dollar</td><td>1.26</td></tr>
+            <tr><td>CHF</td><td>Swiss Franc</td><td>0.92</td></tr>
+            <tr><td>BRL</td><td>Brazilian Real</td><td>5.33</td></tr>
+            <tr><td>RUB</td><td>Russian Ruble</td><td>73.60</td></tr>
+            <tr><td>MXN</td><td>Mexican Peso</td><td>19.91</td></tr>
+            <tr><td>SGD</td><td>Singapore Dollar</td><td>1.34</td></tr>
+            <tr><td>SEK</td><td>Swedish Krona</td><td>8.67</td></tr>
+            <tr><td>NOK</td><td>Norwegian Krone</td><td>8.77</td></tr>
+            <tr><td>NZD</td><td>New Zealand Dollar</td><td>1.43</td></tr>
+            <tr><td>KRW</td><td>South Korean Won</td><td>1170.50</td></tr>
+            <tr><td>HKD</td><td>Hong Kong Dollar</td><td>7.79</td></tr>
+            <tr><td>TRY</td><td>Turkish Lira</td><td>8.58</td></tr>
+            <tr><td>SAR</td><td>Saudi Arabian Riyal</td><td>3.75</td></tr>
+            <tr><td>AED</td><td>United Arab Emirates Dirham</td><td>3.67</td></tr>
+            <tr><td>ARS</td><td>Argentine Peso</td><td>97.75</td></tr>
+            <tr><td>PLN</td><td>Polish Zloty</td><td>3.92</td></tr>
+            <tr><td>ZAR</td><td>South African Rand</td><td>14.63</td></tr>
+            <tr><td>THB</td><td>Thai Baht</td><td>33.23</td></tr>
+            <tr><td>PHP</td><td>Philippine Peso</td><td>50.33</td></tr>
+            <tr><td>VND</td><td>Vietnamese Dong</td><td>23000.50</td></tr>
+            <tr><td>EGP</td><td>Egyptian Pound</td><td>15.74</td></tr>
+            <tr><td>IDR</td><td>Indonesian Rupiah</td><td>14445.50</td></tr>
+            <tr><td>PKR</td><td>Pakistani Rupee</td><td>168.50</td></tr>
+            <tr><td>KWD</td><td>Kuwaiti Dinar</td><td>0.30</td></tr>
+            <tr><td>IQD</td><td>Iraqi Dinar</td><td>1460.50</td></tr>
+            <tr><td>IRR</td><td>Iranian Rial</td><td>42105.00</td></tr>
+            <tr><td>BDT</td><td>Bangladeshi Taka</td><td>85.08</td></tr>
+            <tr><td>NPR</td><td>Nepalese Rupee</td><td>118.50</td></tr>
+            <tr><td>NGN</td><td>Nigerian Naira</td><td>410.00</td></tr>
+            <tr><td>GHS</td><td>Ghanaian Cedi</td><td>6.03</td></tr>
+            <tr><td>XOF</td><td>West African CFA Franc</td><td>553.50</td></tr>
+            <tr><td>UGX</td><td>Ugandan Shilling</td><td>3550.00</td></tr>
+            <tr><td>TZS</td><td>Tanzanian Shilling</td><td>2310.00</td></tr>
+            <tr><td>ETB</td><td>Ethiopian Birr</td><td>45.50</td></tr>
+            <tr><td>XAF</td><td>Central African CFA Franc</td><td>553.50</td></tr>
+            <tr><td>MWK</td><td>Malawian Kwacha</td><td>810.00</td></tr>
+            <tr><td>ZMW</td><td>Zambian Kwacha</td><td>16.40</td></tr>
+            <tr><td>BHD</td><td>Bahraini Dinar</td><td>0.38</td></tr>
+            <tr><td>OMR</td><td>Omani Rial</td><td>0.38</td></tr>
+            <tr><td>LBP</td><td>Lebanese Pound</td><td>1500.00</td></tr>
+            <tr><td>DZD</td><td>Algerian Dinar</td><td>136.00</td></tr>
+            <tr><td>MAD</td><td>Moroccan Dirham</td><td>9.10</td></tr>
+            <tr><td>TND</td><td>Tunisian Dinar</td><td>2.83</td></tr>
+            <tr><td>BYN</td><td>Belarusian Ruble</td><td>2.55</td></tr>
+            <tr><td>AZN</td><td>Azerbaijani Manat</td><td>1.70</td></tr>
+            <tr><td>GEL</td><td>Georgian Lari</td><td>3.22</td></tr>
+            <tr><td>MDL</td><td>Moldovan Leu</td><td>17.80</td></tr>
+            <tr><td>RSD</td><td>Serbian Dinar</td><td>101.50</td></tr>
+            <tr><td>HRK</td><td>Croatian Kuna</td><td>6.40</td></tr>
+            <tr><td>CZK</td><td>Czech Koruna</td><td>21.50</td></tr>
+            <tr><td>HUF</td><td>Hungarian Forint</td><td>300.00</td></tr>
+            <tr><td>ISK</td><td>Icelandic Krona</td><td>130.00</td></tr>
+            <tr><td>BGN</td><td>Bulgarian Lev</td><td>1.70</td></tr>
+            <tr><td>RON</td><td>Romanian Leu</td><td>4.30</td></tr>
+            <tr><td>SKK</td><td>Slovak Koruna</td><td>31.50</td></tr>
+            <tr><td>SIT</td><td>Slovenian Tolar</td><td>240.00</td></tr>
+            <tr><td>MKD</td><td>North Macedonian Denar</td><td>55.00</td></tr>
+        </tbody>
+    </table>
+
+    <!-- Back to Dashboard button -->
+    <div style="text-align: center; margin-top: 20px;">
+        <button onclick="window.location.href='index.html';">Back to Dashboard</button>
+    </div>
+
+    <script>
+        function filterTable() {
+            const input = document.getElementById("currencySearch");
+            const filter = input.value.toUpperCase();
+            const table = document.getElementById("currencyTable");
+            const tr = table.getElementsByTagName("tr");
+
+            for (let i = 1; i < tr.length; i++) {
+                const td = tr[i].getElementsByTagName("td");
+                let txtValue = "";
+                for (let j = 0; j < td.length; j++) {
+                    txtValue += td[j].textContent || td[j].innerText;
+                }
+                tr[i].style.display = txtValue.toUpperCase().includes(filter) ? "" : "none";
+            }
+        }
+
+        function refreshRates() {
+            // Code to refresh rates can be added here
+            alert("Rates refreshed!");
+        }
+    </script>
+</body>
+</html>
