@@ -80,5 +80,19 @@ To run this project run
 
 Download and use SQLite Browser to view exchange_rate.db.
 
+# UI
+![Screenshot 2024-09-26 113307](https://github.com/user-attachments/assets/b6a04447-e7d8-4dc7-a8f3-cd5e10fdd196)
+![Screenshot 2024-09-26 113328](https://github.com/user-attachments/assets/73fea810-0997-4213-9a69-35eadb9563dc)
+![Screenshot 2024-09-26 113355](https://github.com/user-attachments/assets/86fb9ca0-d131-4371-a671-f5e1e1779404)
+![Screenshot 2024-09-26 113408](https://github.com/user-attachments/assets/f8351a4e-5da7-436f-b93c-da0e9100f604)
+![Screenshot 2024-09-26 113426](https://github.com/user-attachments/assets/9ec26b18-ffa4-46de-a731-4ac6bb0156ec)
+
+# Interactive graph
+![Screenshot 2024-09-26 113504](https://github.com/user-attachments/assets/da1b5364-e4c3-4103-83d0-107da6100de0)
+
+# Database
+![Screenshot 2024-09-26 113555](https://github.com/user-attachments/assets/8a9e9d60-35a2-4ad7-b1cb-14021b95f0c2)
+
+
 
 
